@@ -12,3 +12,8 @@ add_to_db::~add_to_db()
 {
     delete ui;
 }
+
+void add_to_db::on_addToDbButtonBox_accepted()
+{
+
+}

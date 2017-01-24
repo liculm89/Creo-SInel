@@ -7,6 +7,8 @@
 #include "add_to_db.h"
 #include "iostream"
 #include "QDebug"
+#include <QtSql>
+#include <QMessageBox>
 using namespace std;
 
 QStringList getConfig();
@@ -22,14 +24,19 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
+    void connectToDatabase();
+    void fillTabelsList();
+    void generateTableView();
 
 
 
 private slots:
     void on_actionAdd_project_triggered();
 
+    void on_projectsList_clicked(const QModelIndex &index);
 
 private:
+    QString List_curr;
 
     Ui::MainWindow *ui;
 };

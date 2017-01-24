@@ -19,6 +19,7 @@
 #include <QtWidgets/QMenu>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QStatusBar>
+#include <QtWidgets/QTableWidget>
 #include <QtWidgets/QToolBar>
 #include <QtWidgets/QWidget>
 
@@ -30,6 +31,7 @@ public:
     QAction *actionAdd_project;
     QWidget *centralWidget;
     QListWidget *projectsList;
+    QTableWidget *tableWidget;
     QMenuBar *menuBar;
     QMenu *menuProjects;
     QToolBar *mainToolBar;
@@ -39,18 +41,21 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QStringLiteral("MainWindow"));
-        MainWindow->resize(524, 416);
+        MainWindow->resize(714, 384);
         actionAdd_project = new QAction(MainWindow);
         actionAdd_project->setObjectName(QStringLiteral("actionAdd_project"));
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         projectsList = new QListWidget(centralWidget);
         projectsList->setObjectName(QStringLiteral("projectsList"));
-        projectsList->setGeometry(QRect(40, 50, 256, 192));
+        projectsList->setGeometry(QRect(10, 10, 161, 231));
+        tableWidget = new QTableWidget(centralWidget);
+        tableWidget->setObjectName(QStringLiteral("tableWidget"));
+        tableWidget->setGeometry(QRect(200, 10, 461, 192));
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 524, 25));
+        menuBar->setGeometry(QRect(0, 0, 714, 25));
         menuProjects = new QMenu(menuBar);
         menuProjects->setObjectName(QStringLiteral("menuProjects"));
         MainWindow->setMenuBar(menuBar);

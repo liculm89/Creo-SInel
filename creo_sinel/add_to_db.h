@@ -12,8 +12,12 @@ class add_to_db : public QDialog
     Q_OBJECT
 
 public:
+    QStringList addEntry;
     explicit add_to_db(QWidget *parent = 0);
     ~add_to_db();
+
+private slots:
+    void on_addToDbButtonBox_accepted();
 
 private:
     Ui::add_to_db *ui;
