@@ -6,57 +6,21 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>526</width>
-    <height>418</height>
+    <width>524</width>
+    <height>416</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <widget class="QLabel" name="label">
+   <widget class="QListWidget" name="projectsList">
     <property name="geometry">
      <rect>
       <x>40</x>
-      <y>60</y>
-      <width>131</width>
-      <height>18</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Local project folder:</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_2">
-    <property name="geometry">
-     <rect>
-      <x>40</x>
-      <y>100</y>
-      <width>121</width>
-      <height>18</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Main project folder:</string>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="lineEdit">
-    <property name="geometry">
-     <rect>
-      <x>170</x>
-      <y>60</y>
-      <width>113</width>
-      <height>24</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="lineEdit_2">
-    <property name="geometry">
-     <rect>
-      <x>170</x>
-      <y>100</y>
-      <width>113</width>
-      <height>24</height>
+      <y>50</y>
+      <width>256</width>
+      <height>192</height>
      </rect>
     </property>
    </widget>
@@ -66,10 +30,17 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>526</width>
+     <width>524</width>
      <height>25</height>
     </rect>
    </property>
+   <widget class="QMenu" name="menuProjects">
+    <property name="title">
+     <string>Pro&amp;jects</string>
+    </property>
+    <addaction name="actionAdd_project"/>
+   </widget>
+   <addaction name="menuProjects"/>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
    <attribute name="toolBarArea">
@@ -80,6 +51,11 @@
    </attribute>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
+  <action name="actionAdd_project">
+   <property name="text">
+    <string>&amp;Add project</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources/>

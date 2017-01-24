@@ -2,6 +2,14 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QFile>
+//#include <QtCore>
+#include "add_to_db.h"
+#include "iostream"
+#include "QDebug"
+using namespace std;
+
+QStringList getConfig();
 
 namespace Ui {
 class MainWindow;
@@ -15,7 +23,14 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
+
+
+private slots:
+    void on_actionAdd_project_triggered();
+
+
 private:
+
     Ui::MainWindow *ui;
 };
 
