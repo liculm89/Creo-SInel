@@ -12,10 +12,10 @@ MAKEFILE      = Makefile
 
 CC            = gcc
 CXX           = g++
-DEFINES       = -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB
+DEFINES       = -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_SQL_LIB -DQT_CORE_LIB
 CFLAGS        = -pipe -g -Wall -W -D_REENTRANT -fPIC $(DEFINES)
 CXXFLAGS      = -pipe -g -Wall -W -D_REENTRANT -fPIC $(DEFINES)
-INCPATH       = -I../creo_sinel -I. -isystem /usr/include/qt5 -isystem /usr/include/qt5/QtWidgets -isystem /usr/include/qt5/QtGui -isystem /usr/include/qt5/QtCore -I. -I. -I/usr/lib64/qt5/mkspecs/linux-g++
+INCPATH       = -I../creo_sinel -I. -isystem /usr/include/qt5 -isystem /usr/include/qt5/QtWidgets -isystem /usr/include/qt5/QtGui -isystem /usr/include/qt5/QtSql -isystem /usr/include/qt5/QtCore -I. -I. -I/usr/lib64/qt5/mkspecs/linux-g++
 QMAKE         = /usr/bin/qmake-qt5
 DEL_FILE      = rm -f
 CHK_DIR_EXISTS= test -d
@@ -36,7 +36,7 @@ DISTNAME      = creo_sinel1.0.0
 DISTDIR = /home/mauro/creo_sinel/build-creo_sinel-Desktop-Debug/.tmp/creo_sinel1.0.0
 LINK          = g++
 LFLAGS        = 
-LIBS          = $(SUBLIBS) -lQt5Widgets -L/usr/lib64 -lQt5Gui -lQt5Core -lGL -lpthread 
+LIBS          = $(SUBLIBS) -lQt5Widgets -L/usr/lib64 -lQt5Gui -lQt5Sql -lQt5Core -lGL -lpthread 
 AR            = ar cqs
 RANLIB        = 
 SED           = sed
@@ -49,10 +49,14 @@ OBJECTS_DIR   = ./
 ####### Files
 
 SOURCES       = ../creo_sinel/main.cpp \
-		../creo_sinel/mainwindow.cpp moc_mainwindow.cpp
+		../creo_sinel/mainwindow.cpp \
+		../creo_sinel/add_to_db.cpp moc_mainwindow.cpp \
+		moc_add_to_db.cpp
 OBJECTS       = main.o \
 		mainwindow.o \
-		moc_mainwindow.o
+		add_to_db.o \
+		moc_mainwindow.o \
+		moc_add_to_db.o
 DIST          = /usr/lib64/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib64/qt5/mkspecs/common/unix.conf \
 		/usr/lib64/qt5/mkspecs/common/linux.conf \
@@ -162,8 +166,10 @@ DIST          = /usr/lib64/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib64/qt5/mkspecs/features/exceptions.prf \
 		/usr/lib64/qt5/mkspecs/features/yacc.prf \
 		/usr/lib64/qt5/mkspecs/features/lex.prf \
-		../creo_sinel/creo_sinel.pro ../creo_sinel/mainwindow.h ../creo_sinel/main.cpp \
-		../creo_sinel/mainwindow.cpp
+		../creo_sinel/creo_sinel.pro ../creo_sinel/mainwindow.h \
+		../creo_sinel/add_to_db.h ../creo_sinel/main.cpp \
+		../creo_sinel/mainwindow.cpp \
+		../creo_sinel/add_to_db.cpp
 QMAKE_TARGET  = creo_sinel
 DESTDIR       = #avoid trailing-slash linebreak
 TARGET        = creo_sinel
@@ -191,7 +197,7 @@ first: all
 
 ####### Build rules
 
-$(TARGET): ui_mainwindow.h $(OBJECTS)  
+$(TARGET): ui_mainwindow.h ui_add_to_db.h $(OBJECTS)  
 	$(LINK) $(LFLAGS) -o $(TARGET) $(OBJECTS) $(OBJCOMP) $(LIBS)
 
 Makefile: ../creo_sinel/creo_sinel.pro /usr/lib64/qt5/mkspecs/linux-g++/qmake.conf /usr/lib64/qt5/mkspecs/features/spec_pre.prf \
@@ -306,6 +312,7 @@ Makefile: ../creo_sinel/creo_sinel.pro /usr/lib64/qt5/mkspecs/linux-g++/qmake.co
 		../creo_sinel/creo_sinel.pro \
 		/usr/lib64/libQt5Widgets.prl \
 		/usr/lib64/libQt5Gui.prl \
+		/usr/lib64/libQt5Sql.prl \
 		/usr/lib64/libQt5Core.prl
 	$(QMAKE) -spec linux-g++ CONFIG+=debug -o Makefile ../creo_sinel/creo_sinel.pro
 /usr/lib64/qt5/mkspecs/features/spec_pre.prf:
@@ -420,6 +427,7 @@ Makefile: ../creo_sinel/creo_sinel.pro /usr/lib64/qt5/mkspecs/linux-g++/qmake.co
 ../creo_sinel/creo_sinel.pro:
 /usr/lib64/libQt5Widgets.prl:
 /usr/lib64/libQt5Gui.prl:
+/usr/lib64/libQt5Sql.prl:
 /usr/lib64/libQt5Core.prl:
 qmake: FORCE
 	@$(QMAKE) -spec linux-g++ CONFIG+=debug -o Makefile ../creo_sinel/creo_sinel.pro
@@ -435,9 +443,9 @@ dist: distdir FORCE
 distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
-	$(COPY_FILE) --parents ../creo_sinel/mainwindow.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../creo_sinel/main.cpp ../creo_sinel/mainwindow.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../creo_sinel/mainwindow.ui $(DISTDIR)/
+	$(COPY_FILE) --parents ../creo_sinel/mainwindow.h ../creo_sinel/add_to_db.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../creo_sinel/main.cpp ../creo_sinel/mainwindow.cpp ../creo_sinel/add_to_db.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../creo_sinel/mainwindow.ui ../creo_sinel/add_to_db.ui $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -460,19 +468,26 @@ check: first
 
 compiler_rcc_make_all:
 compiler_rcc_clean:
-compiler_moc_header_make_all: moc_mainwindow.cpp
+compiler_moc_header_make_all: moc_mainwindow.cpp moc_add_to_db.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) moc_mainwindow.cpp
-moc_mainwindow.cpp: ../creo_sinel/mainwindow.h
-	/usr/lib64/qt5/bin/moc $(DEFINES) -I/usr/lib64/qt5/mkspecs/linux-g++ -I/home/mauro/creo_sinel/creo_sinel -I/usr/include/qt5 -I/usr/include/qt5/QtWidgets -I/usr/include/qt5/QtGui -I/usr/include/qt5/QtCore -I. -I/usr/include/c++/4.8 -I/usr/include/c++/4.8/x86_64-suse-linux -I/usr/include/c++/4.8/backward -I/usr/lib64/gcc/x86_64-suse-linux/4.8/include -I/usr/local/include -I/usr/lib64/gcc/x86_64-suse-linux/4.8/include-fixed -I/usr/x86_64-suse-linux/include -I/usr/include ../creo_sinel/mainwindow.h -o moc_mainwindow.cpp
+	-$(DEL_FILE) moc_mainwindow.cpp moc_add_to_db.cpp
+moc_mainwindow.cpp: ../creo_sinel/add_to_db.h \
+		../creo_sinel/mainwindow.h
+	/usr/lib64/qt5/bin/moc $(DEFINES) -I/usr/lib64/qt5/mkspecs/linux-g++ -I/home/mauro/creo_sinel/creo_sinel -I/usr/include/qt5 -I/usr/include/qt5/QtWidgets -I/usr/include/qt5/QtGui -I/usr/include/qt5/QtSql -I/usr/include/qt5/QtCore -I. -I/usr/include/c++/4.8 -I/usr/include/c++/4.8/x86_64-suse-linux -I/usr/include/c++/4.8/backward -I/usr/lib64/gcc/x86_64-suse-linux/4.8/include -I/usr/local/include -I/usr/lib64/gcc/x86_64-suse-linux/4.8/include-fixed -I/usr/x86_64-suse-linux/include -I/usr/include ../creo_sinel/mainwindow.h -o moc_mainwindow.cpp
+
+moc_add_to_db.cpp: ../creo_sinel/add_to_db.h
+	/usr/lib64/qt5/bin/moc $(DEFINES) -I/usr/lib64/qt5/mkspecs/linux-g++ -I/home/mauro/creo_sinel/creo_sinel -I/usr/include/qt5 -I/usr/include/qt5/QtWidgets -I/usr/include/qt5/QtGui -I/usr/include/qt5/QtSql -I/usr/include/qt5/QtCore -I. -I/usr/include/c++/4.8 -I/usr/include/c++/4.8/x86_64-suse-linux -I/usr/include/c++/4.8/backward -I/usr/lib64/gcc/x86_64-suse-linux/4.8/include -I/usr/local/include -I/usr/lib64/gcc/x86_64-suse-linux/4.8/include-fixed -I/usr/x86_64-suse-linux/include -I/usr/include ../creo_sinel/add_to_db.h -o moc_add_to_db.cpp
 
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
-compiler_uic_make_all: ui_mainwindow.h
+compiler_uic_make_all: ui_mainwindow.h ui_add_to_db.h
 compiler_uic_clean:
-	-$(DEL_FILE) ui_mainwindow.h
+	-$(DEL_FILE) ui_mainwindow.h ui_add_to_db.h
 ui_mainwindow.h: ../creo_sinel/mainwindow.ui
 	/usr/lib64/qt5/bin/uic ../creo_sinel/mainwindow.ui -o ui_mainwindow.h
+
+ui_add_to_db.h: ../creo_sinel/add_to_db.ui
+	/usr/lib64/qt5/bin/uic ../creo_sinel/add_to_db.ui -o ui_add_to_db.h
 
 compiler_yacc_decl_make_all:
 compiler_yacc_decl_clean:
@@ -484,15 +499,24 @@ compiler_clean: compiler_moc_header_clean compiler_uic_clean
 
 ####### Compile
 
-main.o: ../creo_sinel/main.cpp ../creo_sinel/mainwindow.h
+main.o: ../creo_sinel/main.cpp ../creo_sinel/mainwindow.h \
+		../creo_sinel/add_to_db.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../creo_sinel/main.cpp
 
 mainwindow.o: ../creo_sinel/mainwindow.cpp ../creo_sinel/mainwindow.h \
+		../creo_sinel/add_to_db.h \
 		ui_mainwindow.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o ../creo_sinel/mainwindow.cpp
 
+add_to_db.o: ../creo_sinel/add_to_db.cpp ../creo_sinel/add_to_db.h \
+		ui_add_to_db.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o add_to_db.o ../creo_sinel/add_to_db.cpp
+
 moc_mainwindow.o: moc_mainwindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_mainwindow.o moc_mainwindow.cpp
+
+moc_add_to_db.o: moc_add_to_db.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_add_to_db.o moc_add_to_db.cpp
 
 ####### Install
 

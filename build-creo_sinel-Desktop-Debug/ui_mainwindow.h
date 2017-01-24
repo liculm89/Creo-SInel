@@ -14,9 +14,9 @@
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QHeaderView>
-#include <QtWidgets/QLabel>
-#include <QtWidgets/QLineEdit>
+#include <QtWidgets/QListWidget>
 #include <QtWidgets/QMainWindow>
+#include <QtWidgets/QMenu>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QToolBar>
@@ -27,12 +27,11 @@ QT_BEGIN_NAMESPACE
 class Ui_MainWindow
 {
 public:
+    QAction *actionAdd_project;
     QWidget *centralWidget;
-    QLabel *label;
-    QLabel *label_2;
-    QLineEdit *lineEdit;
-    QLineEdit *lineEdit_2;
+    QListWidget *projectsList;
     QMenuBar *menuBar;
+    QMenu *menuProjects;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
 
@@ -40,25 +39,20 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QStringLiteral("MainWindow"));
-        MainWindow->resize(526, 418);
+        MainWindow->resize(524, 416);
+        actionAdd_project = new QAction(MainWindow);
+        actionAdd_project->setObjectName(QStringLiteral("actionAdd_project"));
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
-        label = new QLabel(centralWidget);
-        label->setObjectName(QStringLiteral("label"));
-        label->setGeometry(QRect(40, 60, 91, 18));
-        label_2 = new QLabel(centralWidget);
-        label_2->setObjectName(QStringLiteral("label_2"));
-        label_2->setGeometry(QRect(40, 100, 91, 18));
-        lineEdit = new QLineEdit(centralWidget);
-        lineEdit->setObjectName(QStringLiteral("lineEdit"));
-        lineEdit->setGeometry(QRect(140, 60, 113, 24));
-        lineEdit_2 = new QLineEdit(centralWidget);
-        lineEdit_2->setObjectName(QStringLiteral("lineEdit_2"));
-        lineEdit_2->setGeometry(QRect(140, 100, 113, 24));
+        projectsList = new QListWidget(centralWidget);
+        projectsList->setObjectName(QStringLiteral("projectsList"));
+        projectsList->setGeometry(QRect(40, 50, 256, 192));
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 526, 25));
+        menuBar->setGeometry(QRect(0, 0, 524, 25));
+        menuProjects = new QMenu(menuBar);
+        menuProjects->setObjectName(QStringLiteral("menuProjects"));
         MainWindow->setMenuBar(menuBar);
         mainToolBar = new QToolBar(MainWindow);
         mainToolBar->setObjectName(QStringLiteral("mainToolBar"));
@@ -66,6 +60,9 @@ public:
         statusBar = new QStatusBar(MainWindow);
         statusBar->setObjectName(QStringLiteral("statusBar"));
         MainWindow->setStatusBar(statusBar);
+
+        menuBar->addAction(menuProjects->menuAction());
+        menuProjects->addAction(actionAdd_project);
 
         retranslateUi(MainWindow);
 
@@ -75,8 +72,8 @@ public:
     void retranslateUi(QMainWindow *MainWindow)
     {
         MainWindow->setWindowTitle(QApplication::translate("MainWindow", "MainWindow", 0));
-        label->setText(QApplication::translate("MainWindow", "Local folder:", 0));
-        label_2->setText(QApplication::translate("MainWindow", "Server folder:", 0));
+        actionAdd_project->setText(QApplication::translate("MainWindow", "&Add project", 0));
+        menuProjects->setTitle(QApplication::translate("MainWindow", "Pro&jects", 0));
     } // retranslateUi
 
 };
