@@ -9,8 +9,9 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     QStringList dbConfig = getConfig();
     //int intA = 5;
-    ui->projectsList->addItem("Item");
+
     ui->setupUi(this);
+    ui->projectsList->addItems(dbConfig);
 }
 
 MainWindow::~MainWindow()
