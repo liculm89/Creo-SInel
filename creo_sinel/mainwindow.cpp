@@ -1,20 +1,20 @@
-#include "mainwindow.h"
-#include "ui_mainwindow.h"
-#include "iostream"
-
+#include <mainwindow.h>
+#include <ui_mainwindow.h>
+#include <add_to_db.h>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
     QStringList dbConfig = getConfig();
-    //int intA = 5;
 
     ui->setupUi(this);
 
     connectToDatabase();
     fillTabelsList();
-    //ui->projectsList->addItems(dbConfig);
+
+    QObject::connect(addDialog, SIGNAL(foo(QStringList)), this, SLOT(addProject(QStringList)));
+
 }
 
 MainWindow::~MainWindow()
@@ -61,7 +61,6 @@ void MainWindow::generateTableView()
 {
     QSqlQuery query("SELECT * FROM " + List_curr);
 
-
     ui->tableWidget->setColumnCount(query.record().count());
     ui->tableWidget->setRowCount(query.size());
     int index=0;
@@ -74,18 +73,25 @@ void MainWindow::generateTableView()
             ui->tableWidget->setItem(index, j, new QTableWidgetItem(query.value(j).toString()));
             j++;
         }
-
         index++;
     }
     ui->tableWidget->show();
 }
 
-void MainWindow::on_actionAdd_project_triggered()
+void MainWindow::addProject(QStringList args)
 {
-    add_to_db addDbDialog;
-    addDbDialog.exec();
+    for (int i = 0; i < args.size(); ++i)
+    {
+        qDebug()<<("%s", qUtf8Printable(args[i]));
+
+    }
+    qDebug()<<"Signal recieved ... Adding to project";
 }
 
+void MainWindow::on_actionAdd_project_triggered()
+{
+    addDialog->exec();
+}
 
 void MainWindow::on_projectsList_clicked(const QModelIndex &index)
 {

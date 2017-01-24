@@ -19,20 +19,12 @@ QStringList getConfig()
     return dbConfig;
 }
 
-
-
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    cout << "aaaaa";
-
-
-    //QStringList dbConfig = getConfig();
-
-    //qDebug("%s", qUtf8Printable(dbConfig[0]));
 
     MainWindow w;
-
     w.show();
+
     return a.exec();
 }
