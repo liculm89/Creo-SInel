@@ -4,8 +4,6 @@
 #include <add_to_db.h>
 #include <QMainWindow>
 #include <QFile>
-//#include <QtCore>
-
 #include "iostream"
 #include "QDebug"
 #include <QtSql>

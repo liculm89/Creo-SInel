@@ -86,6 +86,9 @@ void MainWindow::addProject(QStringList args)
 
     }
     qDebug()<<"Signal recieved ... Adding to project";
+
+    QSqlQuery query1("INSERT INTO projects (ProjNo, ProjName, MainDir, LocDir) VALUES ('"+args[0]+"','"+args[1]+"','"+args[2]+"','"+args[3]+"')");
+
 }
 
 void MainWindow::on_actionAdd_project_triggered()
