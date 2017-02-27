@@ -30,6 +30,7 @@ void MainWindow::connectToDatabase()
     db.setDatabaseName(dbConfig[1]);
     db.setUserName(dbConfig[2]);
     db.setPassword(dbConfig[3]);
+    qDebug(qUtf8Printable(dbConfig[3]));
 
     if (!db.open())
     {

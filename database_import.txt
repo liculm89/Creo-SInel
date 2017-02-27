@@ -1,0 +1,9 @@
+Import:
+
+zipped:
+gunzip < /home/mauro/creo_sinel/database.sql.gz | mysql -u mauro -p parts
+mysql -u mauro -p parts < /home/mauro/creo_sinel/database.sql
+
+
+export: 
+mysqldump -u mauro -p parts > db_backup.sql
