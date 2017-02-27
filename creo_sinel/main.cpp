@@ -12,7 +12,7 @@ QStringList getConfig()
        {
           QString line = in.readLine();
           dbConfig << line;
-          //qDebug("%s", qUtf8Printable(line));
+          qDebug("%s", qUtf8Printable(line));
        }
        inputFile.close();
     }
