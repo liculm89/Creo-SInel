@@ -87,7 +87,7 @@ $(DESTDIR_TARGET): ui_mainwindow.h ui_add_to_db.h $(OBJECTS)
 	$(LINKER) $(LFLAGS) -o $(DESTDIR_TARGET) $(OBJECTS)  $(LIBS)
 
 qmake: FORCE
-	@$(QMAKE) -spec win32-g++ CONFIG+=debug -o Makefile.Debug ../creo_sinel/creo_sinel.pro
+	@$(QMAKE) -spec win32-g++ -o Makefile.Debug ../creo_sinel/creo_sinel.pro
 
 qmake_all: FORCE
 
@@ -367,6 +367,7 @@ debug/moc_mainwindow.cpp: ../creo_sinel/add_to_db.h \
 		C:/Qt/5.5/mingw492_32/include/QtSql/qtsqlversion.h \
 		C:/Qt/5.5/mingw492_32/include/QtWidgets/QMessageBox \
 		C:/Qt/5.5/mingw492_32/include/QtWidgets/qmessagebox.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/QWidget \
 		../creo_sinel/mainwindow.h
 	'C:\Qt\5.5\mingw492_32\bin\moc.exe' $(DEFINES) -D__GNUC__ -DWIN32 -IC:/Qt/5.5/mingw492_32/mkspecs/win32-g++ -I'D:/Projekti 2017/Creo-Sinel/creo_sinel' -IC:/Qt/5.5/mingw492_32/include -IC:/Qt/5.5/mingw492_32/include/QtWidgets -IC:/Qt/5.5/mingw492_32/include/QtGui -IC:/Qt/5.5/mingw492_32/include/QtANGLE -IC:/Qt/5.5/mingw492_32/include/QtSql -IC:/Qt/5.5/mingw492_32/include/QtCore -I. ../creo_sinel/mainwindow.h -o debug/moc_mainwindow.cpp
 
@@ -754,6 +755,7 @@ debug/main.o: ../creo_sinel/main.cpp ../creo_sinel/mainwindow.h \
 		C:/Qt/5.5/mingw492_32/include/QtSql/qtsqlversion.h \
 		C:/Qt/5.5/mingw492_32/include/QtWidgets/QMessageBox \
 		C:/Qt/5.5/mingw492_32/include/QtWidgets/qmessagebox.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/QWidget \
 		C:/Qt/5.5/mingw492_32/include/QtWidgets/QApplication \
 		C:/Qt/5.5/mingw492_32/include/QtWidgets/qapplication.h \
 		C:/Qt/5.5/mingw492_32/include/QtWidgets/qdesktopwidget.h \
@@ -1015,34 +1017,8 @@ debug/mainwindow.o: ../creo_sinel/mainwindow.cpp ../creo_sinel/mainwindow.h \
 		C:/Qt/5.5/mingw492_32/include/QtSql/qtsqlversion.h \
 		C:/Qt/5.5/mingw492_32/include/QtWidgets/QMessageBox \
 		C:/Qt/5.5/mingw492_32/include/QtWidgets/qmessagebox.h \
-		ui_mainwindow.h \
-		C:/Qt/5.5/mingw492_32/include/QtCore/QVariant \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/QAction \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/qaction.h \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/qactiongroup.h \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/QApplication \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/qapplication.h \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/qdesktopwidget.h \
-		C:/Qt/5.5/mingw492_32/include/QtGui/qguiapplication.h \
-		C:/Qt/5.5/mingw492_32/include/QtGui/qinputmethod.h \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/QButtonGroup \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/qbuttongroup.h \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/QHeaderView \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/qheaderview.h \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/QListWidget \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/qlistwidget.h \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/QMenu \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/qmenu.h \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/QMenuBar \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/qmenubar.h \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/QStatusBar \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/qstatusbar.h \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/QTableWidget \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/qtablewidget.h \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/qtableview.h \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/QToolBar \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/qtoolbar.h \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/QWidget
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/QWidget \
+		ui_mainwindow.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug/mainwindow.o ../creo_sinel/mainwindow.cpp
 
 debug/add_to_db.o: ../creo_sinel/add_to_db.cpp ../creo_sinel/add_to_db.h \
@@ -1150,55 +1126,7 @@ debug/add_to_db.o: ../creo_sinel/add_to_db.cpp ../creo_sinel/add_to_db.h \
 		C:/Qt/5.5/mingw492_32/include/QtGui/qvector2d.h \
 		C:/Qt/5.5/mingw492_32/include/QtGui/qtouchdevice.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/QDebug \
-		ui_add_to_db.h \
-		C:/Qt/5.5/mingw492_32/include/QtCore/QVariant \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/QAction \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/qaction.h \
-		C:/Qt/5.5/mingw492_32/include/QtGui/qicon.h \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/qactiongroup.h \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/QApplication \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/qapplication.h \
-		C:/Qt/5.5/mingw492_32/include/QtCore/qcoreapplication.h \
-		C:/Qt/5.5/mingw492_32/include/QtCore/qeventloop.h \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/qdesktopwidget.h \
-		C:/Qt/5.5/mingw492_32/include/QtGui/qguiapplication.h \
-		C:/Qt/5.5/mingw492_32/include/QtGui/qinputmethod.h \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/QButtonGroup \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/qbuttongroup.h \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/QDialogButtonBox \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/qdialogbuttonbox.h \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/QHBoxLayout \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/qboxlayout.h \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/qlayout.h \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/qlayoutitem.h \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/qgridlayout.h \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/QHeaderView \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/qheaderview.h \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/qabstractitemview.h \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/qabstractscrollarea.h \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/qframe.h \
-		C:/Qt/5.5/mingw492_32/include/QtCore/qabstractitemmodel.h \
-		C:/Qt/5.5/mingw492_32/include/QtCore/qitemselectionmodel.h \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/qabstractitemdelegate.h \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/qstyleoption.h \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/qabstractspinbox.h \
-		C:/Qt/5.5/mingw492_32/include/QtGui/qvalidator.h \
-		C:/Qt/5.5/mingw492_32/include/QtCore/qregularexpression.h \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/qslider.h \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/qabstractslider.h \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/qstyle.h \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/qtabbar.h \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/qtabwidget.h \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/qrubberband.h \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/QLabel \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/qlabel.h \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/QLineEdit \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/qlineedit.h \
-		C:/Qt/5.5/mingw492_32/include/QtGui/qtextcursor.h \
-		C:/Qt/5.5/mingw492_32/include/QtGui/qtextformat.h \
-		C:/Qt/5.5/mingw492_32/include/QtGui/qpen.h \
-		C:/Qt/5.5/mingw492_32/include/QtGui/qtextoption.h \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/QVBoxLayout
+		ui_add_to_db.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug/add_to_db.o ../creo_sinel/add_to_db.cpp
 
 debug/moc_mainwindow.o: debug/moc_mainwindow.cpp 

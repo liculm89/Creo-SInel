@@ -6,9 +6,12 @@
 #include <QFile>
 #include "iostream"
 #include "QDebug"
+#include <qlist.h>
 #include <QtSql>
 #include <QMessageBox>
-
+#include <qwindowdefs.h>
+#include <QWidget>
+#include <QDialog>
 QStringList getConfig();
 
 namespace Ui {
