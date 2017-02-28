@@ -25,7 +25,6 @@ void add_to_db::on_addToDbButtonBox_accepted()
     for (int i = 0; i < newProject.size(); ++i)
     {
         qDebug()<<("%s", qUtf8Printable(newProject[i]));
-
     }
 }
 

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>714</width>
-    <height>384</height>
+    <width>1097</width>
+    <height>472</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -27,12 +27,32 @@
    <widget class="QTableWidget" name="tableWidget">
     <property name="geometry">
      <rect>
-      <x>200</x>
+      <x>190</x>
       <y>10</y>
-      <width>461</width>
-      <height>192</height>
+      <width>881</width>
+      <height>401</height>
      </rect>
     </property>
+    <column>
+     <property name="text">
+      <string>Project number</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>New Column</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Project name</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Local directory</string>
+     </property>
+    </column>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
@@ -40,8 +60,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>714</width>
-     <height>25</height>
+     <width>1097</width>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuProjects">

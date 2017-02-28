@@ -28,6 +28,7 @@ public:
     void connectToDatabase();
     void fillTabelsList();
     void generateTableView();
+    int count_files(QString directory, QString proj_name, QString extension);
     add_to_db *addDialog = new add_to_db(this);
 
 public slots:
@@ -35,11 +36,12 @@ public slots:
 
 private slots:
     void on_actionAdd_project_triggered();
-    void on_projectsList_clicked(const QModelIndex &index);
+    void on_projectsList_clicked(const QModelIndex);
 
 private:
     QString List_curr;
     Ui::MainWindow *ui;
+    //add_to_db *addDialog;
 
 };
 

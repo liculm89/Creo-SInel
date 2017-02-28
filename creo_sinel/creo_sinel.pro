@@ -4,6 +4,7 @@
 #
 #-------------------------------------------------
 CONFIG += c++11
+DESTDIR = $$PWD
 
 QT       += core gui sql widgets
 greaterThan(QT_MAJOR_VERSION, 5): QT += widgets

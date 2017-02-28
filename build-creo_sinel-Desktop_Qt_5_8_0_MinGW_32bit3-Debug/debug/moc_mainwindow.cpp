@@ -21,8 +21,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_MainWindow_t {
-    QByteArrayData data[7];
-    char stringdata0[89];
+    QByteArrayData data[6];
+    char stringdata0[83];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -36,13 +36,12 @@ QT_MOC_LITERAL(1, 11, 10), // "addProject"
 QT_MOC_LITERAL(2, 22, 0), // ""
 QT_MOC_LITERAL(3, 23, 4), // "args"
 QT_MOC_LITERAL(4, 28, 30), // "on_actionAdd_project_triggered"
-QT_MOC_LITERAL(5, 59, 23), // "on_projectsList_clicked"
-QT_MOC_LITERAL(6, 83, 5) // "index"
+QT_MOC_LITERAL(5, 59, 23) // "on_projectsList_clicked"
 
     },
     "MainWindow\0addProject\0\0args\0"
     "on_actionAdd_project_triggered\0"
-    "on_projectsList_clicked\0index"
+    "on_projectsList_clicked"
 };
 #undef QT_MOC_LITERAL
 
@@ -67,7 +66,7 @@ static const uint qt_meta_data_MainWindow[] = {
  // slots: parameters
     QMetaType::Void, QMetaType::QStringList,    3,
     QMetaType::Void,
-    QMetaType::Void, QMetaType::QModelIndex,    6,
+    QMetaType::Void, QMetaType::QModelIndex,    2,
 
        0        // eod
 };

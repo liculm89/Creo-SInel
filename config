@@ -1,0 +1,4 @@
+hostName = localhost
+databaseName = parts
+userName = mauro
+pass = part_user

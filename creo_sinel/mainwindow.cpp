@@ -6,15 +6,11 @@ MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
-    QStringList dbConfig = getConfig();
-
     ui->setupUi(this);
-
     connectToDatabase();
     fillTabelsList();
 
     QObject::connect(addDialog, SIGNAL(foo(QStringList)), this, SLOT(addProject(QStringList)));
-
 }
 
 MainWindow::~MainWindow()
@@ -26,16 +22,23 @@ void MainWindow::connectToDatabase()
 {
     QSqlDatabase db = QSqlDatabase::addDatabase("QMYSQL");
     QStringList dbConfig = getConfig();
-    db.setHostName(dbConfig[0]);
-    db.setDatabaseName(dbConfig[1]);
-    db.setUserName(dbConfig[2]);
-    db.setPassword(dbConfig[3]);
-    qDebug(qUtf8Printable(dbConfig[3]));
 
-    if (!db.open())
+    if(!dbConfig.empty())
+     {
+        db.setHostName(dbConfig[0]);
+        db.setDatabaseName(dbConfig[1]);
+        db.setUserName(dbConfig[2]);
+        db.setPassword(dbConfig[3]);
+
+        if (!db.open())
+        {
+            QMessageBox::critical(0, QObject::tr("Database Error"),
+            db.lastError().text());
+        }
+    }
+    else
     {
-        QMessageBox::critical(0, QObject::tr("Database Error"),
-                              db.lastError().text());
+        QMessageBox::critical(0, QObject::tr("Configuration error"), "Check if config file exists");
     }
 }
 
@@ -79,17 +82,57 @@ void MainWindow::generateTableView()
     ui->tableWidget->show();
 }
 
+int MainWindow::count_files(QString directory, QString proj_name, QString extension)
+{
+    int counter;
+    counter = 0;
+
+    QString dir = directory;
+    QDirIterator it(dir, QStringList() << proj_name + "*." + extension + "*", QDir::Files, QDirIterator::Subdirectories);
+    QStringList files_list;
+
+    while (it.hasNext())
+    {
+      QFileInfo fi(it.next());
+      QString base = fi.completeBaseName();
+      files_list.append(base);
+      files_list.removeDuplicates();
+    }
+
+    for (QStringList::Iterator S =  files_list.begin(); S != files_list.end(); S++)
+          {
+               counter++;
+               //qDebug() << *S;
+          }
+    //qDebug() << counter;
+    return counter;
+}
+
+
 void MainWindow::addProject(QStringList args)
 {
     for (int i = 0; i < args.size(); ++i)
     {
-        qDebug()<<("%s", qUtf8Printable(args[i]));
-
+       // qDebug()<<"%s", args[i];
     }
     qDebug()<<"Signal recieved ... Adding to project";
+    QString assembly = "asm";
+    QString prt = "prt";
+    QString drw = "drw";
+    int num_asm = count_files(args[2], args[0], assembly);
+    int num_prt = count_files(args[2], args[0], prt);
+    int num_drw = count_files(args[2], args[0], drw);
 
-    QSqlQuery query1("INSERT INTO projects (ProjNo, ProjName, MainDir, LocDir) VALUES ('"+args[0]+"','"+args[1]+"','"+args[2]+"','"+args[3]+"')");
+    qDebug() << QString::number(num_asm);
 
+    QSqlQuery query1("INSERT INTO projects (ProjNo, ProjName, MainDir, LocDir, Asm, Prt, Drw) \
+    VALUES ('"+args[0]+"','"+args[1]+"','"+args[2]+"','"+args[3]+"', \
+    '"+ QString::number(num_asm)+"','"+QString::number(num_prt)+"', '"+QString::number(num_drw)+"')");
+
+    /*if( !query1.exec() )
+    qDebug() << "> Query exec() error." << query1.lastError();
+    */
+    generateTableView();
 }
 
 void MainWindow::on_actionAdd_project_triggered()
@@ -97,7 +140,7 @@ void MainWindow::on_actionAdd_project_triggered()
     addDialog->exec();
 }
 
-void MainWindow::on_projectsList_clicked(const QModelIndex &index)
+void MainWindow::on_projectsList_clicked(const QModelIndex)
 {
     List_curr = (ui->projectsList->currentItem()->text());
     qDebug("%s", qUtf8Printable(qUtf8Printable(List_curr)));

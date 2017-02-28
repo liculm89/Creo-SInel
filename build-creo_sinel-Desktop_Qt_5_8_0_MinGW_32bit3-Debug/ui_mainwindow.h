@@ -41,7 +41,7 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QStringLiteral("MainWindow"));
-        MainWindow->resize(714, 384);
+        MainWindow->resize(1097, 472);
         actionAdd_project = new QAction(MainWindow);
         actionAdd_project->setObjectName(QStringLiteral("actionAdd_project"));
         centralWidget = new QWidget(MainWindow);
@@ -50,12 +50,22 @@ public:
         projectsList->setObjectName(QStringLiteral("projectsList"));
         projectsList->setGeometry(QRect(10, 10, 161, 231));
         tableWidget = new QTableWidget(centralWidget);
+        if (tableWidget->columnCount() < 4)
+            tableWidget->setColumnCount(4);
+        QTableWidgetItem *__qtablewidgetitem = new QTableWidgetItem();
+        tableWidget->setHorizontalHeaderItem(0, __qtablewidgetitem);
+        QTableWidgetItem *__qtablewidgetitem1 = new QTableWidgetItem();
+        tableWidget->setHorizontalHeaderItem(1, __qtablewidgetitem1);
+        QTableWidgetItem *__qtablewidgetitem2 = new QTableWidgetItem();
+        tableWidget->setHorizontalHeaderItem(2, __qtablewidgetitem2);
+        QTableWidgetItem *__qtablewidgetitem3 = new QTableWidgetItem();
+        tableWidget->setHorizontalHeaderItem(3, __qtablewidgetitem3);
         tableWidget->setObjectName(QStringLiteral("tableWidget"));
-        tableWidget->setGeometry(QRect(200, 10, 461, 192));
+        tableWidget->setGeometry(QRect(190, 10, 881, 401));
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 714, 25));
+        menuBar->setGeometry(QRect(0, 0, 1097, 21));
         menuProjects = new QMenu(menuBar);
         menuProjects->setObjectName(QStringLiteral("menuProjects"));
         MainWindow->setMenuBar(menuBar);
@@ -78,6 +88,14 @@ public:
     {
         MainWindow->setWindowTitle(QApplication::translate("MainWindow", "MainWindow", Q_NULLPTR));
         actionAdd_project->setText(QApplication::translate("MainWindow", "&Add project", Q_NULLPTR));
+        QTableWidgetItem *___qtablewidgetitem = tableWidget->horizontalHeaderItem(0);
+        ___qtablewidgetitem->setText(QApplication::translate("MainWindow", "Project number", Q_NULLPTR));
+        QTableWidgetItem *___qtablewidgetitem1 = tableWidget->horizontalHeaderItem(1);
+        ___qtablewidgetitem1->setText(QApplication::translate("MainWindow", "New Column", Q_NULLPTR));
+        QTableWidgetItem *___qtablewidgetitem2 = tableWidget->horizontalHeaderItem(2);
+        ___qtablewidgetitem2->setText(QApplication::translate("MainWindow", "Project name", Q_NULLPTR));
+        QTableWidgetItem *___qtablewidgetitem3 = tableWidget->horizontalHeaderItem(3);
+        ___qtablewidgetitem3->setText(QApplication::translate("MainWindow", "Local directory", Q_NULLPTR));
         menuProjects->setTitle(QApplication::translate("MainWindow", "Pro&jects", Q_NULLPTR));
     } // retranslateUi
 
