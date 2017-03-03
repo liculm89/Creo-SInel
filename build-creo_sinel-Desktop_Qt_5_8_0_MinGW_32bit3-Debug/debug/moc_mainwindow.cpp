@@ -22,7 +22,7 @@ QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_MainWindow_t {
     QByteArrayData data[6];
-    char stringdata0[83];
+    char stringdata0[85];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -36,12 +36,12 @@ QT_MOC_LITERAL(1, 11, 10), // "addProject"
 QT_MOC_LITERAL(2, 22, 0), // ""
 QT_MOC_LITERAL(3, 23, 4), // "args"
 QT_MOC_LITERAL(4, 28, 30), // "on_actionAdd_project_triggered"
-QT_MOC_LITERAL(5, 59, 23) // "on_projectsList_clicked"
+QT_MOC_LITERAL(5, 59, 25) // "on_databaseTables_clicked"
 
     },
     "MainWindow\0addProject\0\0args\0"
     "on_actionAdd_project_triggered\0"
-    "on_projectsList_clicked"
+    "on_databaseTables_clicked"
 };
 #undef QT_MOC_LITERAL
 
@@ -79,7 +79,7 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         switch (_id) {
         case 0: _t->addProject((*reinterpret_cast< QStringList(*)>(_a[1]))); break;
         case 1: _t->on_actionAdd_project_triggered(); break;
-        case 2: _t->on_projectsList_clicked((*reinterpret_cast< const QModelIndex(*)>(_a[1]))); break;
+        case 2: _t->on_databaseTables_clicked((*reinterpret_cast< const QModelIndex(*)>(_a[1]))); break;
         default: ;
         }
     }

@@ -10,6 +10,15 @@ MainWindow::MainWindow(QWidget *parent) :
     connectToDatabase();
     fillTabelsList();
 
+
+    QString server_dir = "\\\\nserver/Public/PROJEKTI/PROJEKTI-2016/SELK KUTINA/Automatizacija procesa prosijavanja SMD komponenti N018_16";
+    //QString server_dir = "\\\\nserver\\Public\\PROJEKTI\\PROJEKTI-2016\\SELK KUTINA\\Automatizacija procesa prosijavanja SMD komponenti N018_16";
+    qDebug() << server_dir;
+
+    int asm_files = count_files(server_dir, "N018_16", "pdf");
+
+    qDebug() << asm_files;
+
     QObject::connect(addDialog, SIGNAL(foo(QStringList)), this, SLOT(addProject(QStringList)));
 }
 
@@ -58,7 +67,7 @@ void MainWindow::fillTabelsList()
             qDebug("%s", qUtf8Printable(line));
         }
     }
-    ui->projectsList->addItems(tables);
+    ui->databaseTables->addItems(tables);
 }
 
 void MainWindow::generateTableView()
@@ -80,16 +89,32 @@ void MainWindow::generateTableView()
         index++;
     }
     ui->tableWidget->show();
+
+    QSqlQuery query2("SELECT ProjNo FROM " + List_curr);
+
+    //qDebug() << query2.lastError();
+    QStringList projectsFromDatabase;
+
+    while (query2.next())
+    {
+        for(int i = 0; i < query2.record().count(); i++)
+        {
+            projectsFromDatabase << query2.value(i).toString();
+            qDebug() << query2.value(i).toString();
+        }
+    }
+    ui->projectsList->addItems(projectsFromDatabase);
 }
 
 int MainWindow::count_files(QString directory, QString proj_name, QString extension)
 {
+
     int counter;
     counter = 0;
-
     QString dir = directory;
     QDirIterator it(dir, QStringList() << proj_name + "*." + extension + "*", QDir::Files, QDirIterator::Subdirectories);
     QStringList files_list;
+    qDebug() << directory;
 
     while (it.hasNext())
     {
@@ -140,10 +165,14 @@ void MainWindow::on_actionAdd_project_triggered()
     addDialog->exec();
 }
 
-void MainWindow::on_projectsList_clicked(const QModelIndex)
+void MainWindow::on_databaseTables_clicked(const QModelIndex)
 {
-    List_curr = (ui->projectsList->currentItem()->text());
-    qDebug("%s", qUtf8Printable(qUtf8Printable(List_curr)));
+    List_curr = (ui->databaseTables->currentItem()->text());
+
+
+    //count_files()
+    //qDebug("%s", qUtf8Printable(qUtf8Printable(List_curr)));
+
     generateTableView();
 }
 

@@ -12,7 +12,7 @@
 #include <qwindowdefs.h>
 #include <QWidget>
 #include <QDialog>
-QStringList getConfig();
+
 
 namespace Ui {
 class MainWindow;
@@ -29,6 +29,7 @@ public:
     void fillTabelsList();
     void generateTableView();
     int count_files(QString directory, QString proj_name, QString extension);
+
     add_to_db *addDialog = new add_to_db(this);
 
 public slots:
@@ -36,7 +37,7 @@ public slots:
 
 private slots:
     void on_actionAdd_project_triggered();
-    void on_projectsList_clicked(const QModelIndex);
+    void on_databaseTables_clicked(const QModelIndex);
 
 private:
     QString List_curr;
@@ -44,5 +45,8 @@ private:
     //add_to_db *addDialog;
 
 };
+
+
+QStringList getConfig();
 
 #endif // MAINWINDOW_H

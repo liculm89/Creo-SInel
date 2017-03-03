@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1097</width>
-    <height>472</height>
+    <width>1096</width>
+    <height>813</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,20 +17,46 @@
    <widget class="QListWidget" name="projectsList">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>10</y>
-      <width>161</width>
-      <height>231</height>
+      <x>50</x>
+      <y>270</y>
+      <width>71</width>
+      <height>192</height>
      </rect>
     </property>
    </widget>
-   <widget class="QTableWidget" name="tableWidget">
+   <widget class="QGroupBox" name="groupBox">
     <property name="geometry">
      <rect>
-      <x>190</x>
-      <y>10</y>
+      <x>10</x>
+      <y>20</y>
+      <width>151</width>
+      <height>241</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string>GroupBox</string>
+    </property>
+    <widget class="QListWidget" name="databaseTables">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>50</y>
+       <width>101</width>
+       <height>151</height>
+      </rect>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QTableWidget" name="tableWidget">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>180</x>
+      <y>30</y>
       <width>881</width>
-      <height>401</height>
+      <height>371</height>
      </rect>
     </property>
     <column>
@@ -40,12 +66,12 @@
     </column>
     <column>
      <property name="text">
-      <string>New Column</string>
+      <string>Project name</string>
      </property>
     </column>
     <column>
      <property name="text">
-      <string>Project name</string>
+      <string>Main directory</string>
      </property>
     </column>
     <column>
@@ -53,6 +79,34 @@
       <string>Local directory</string>
      </property>
     </column>
+    <column>
+     <property name="text">
+      <string>Assemblys</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Parts</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Drawings</string>
+     </property>
+    </column>
+   </widget>
+   <widget class="QPushButton" name="pushButton">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>470</y>
+      <width>75</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Details...</string>
+    </property>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
@@ -60,7 +114,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1097</width>
+     <width>1096</width>
      <height>21</height>
     </rect>
    </property>

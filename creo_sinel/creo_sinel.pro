@@ -15,10 +15,14 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    add_to_db.cpp
+    add_to_db.cpp \
+    project_details.cpp
 
 HEADERS  += mainwindow.h \
-    add_to_db.h
+    add_to_db.h \
+    project_details.h \
+    sql_connection.h
 
 FORMS    += mainwindow.ui \
-    add_to_db.ui
+    add_to_db.ui \
+    project_details.ui
